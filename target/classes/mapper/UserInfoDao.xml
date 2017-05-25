@@ -1,0 +1,27 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxkj.dao.UserInfoDao">
+
+	<insert id="registerUser">
+		INSERT into seckill.userinfo(username,password,email,code,status)
+		VALUES(#{username},#{password},#{email},#{code},0)
+	</insert>
+	<select id="getUserinfoByCode" resultType="com.xxkj.bean.UserInfo">
+		select * from userinfo where code=#{code}
+	</select>
+	<update id="updateUserInfoStatus">
+		update userinfo set status=1 where code=#{code} and username=#{username}
+	</update>
+	
+	<select id="getUserinfoByEmail" resultType="com.xxkj.bean.UserInfo">
+		select * from userinfo where email=#{email}
+	</select>
+	
+	<select id="getUserInfoByEmailAndPassWord" resultType="com.xxkj.bean.UserInfo">
+		select * from userinfo where email=#{email} and password=#{password}
+	</select>
+	
+	
+	
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="SecKillManger Maven Webapp"
+  id="myeclipse.1494740450278"
+  context-root="/SecKillManger"
+  j2ee-spec="5.0"
+  archive="SecKillManger Maven Webapp.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+

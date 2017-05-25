@@ -1,0 +1,21 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxkj.dao.SeckilledDao">
+
+	<select id="queryByIdWithSeckill" resultType="com.xxkj.bean.SuccessKilled">
+		SELECT * FROM seckill.success_killed where seckill_id=#{seckillId} and
+		user_phone=#{userPhone};
+	</select>
+
+	<insert id="insertSuccessKilled">
+		<!--当出现主键冲突时(即重复秒杀时)，会报错;不想让程序报错，加入ignore -->
+		INSERT ignore INTO success_killed(seckill_id,user_phone,state,uid)
+		VALUES (#{seckillId},#{userPhone},0,#{uid})
+	</insert>
+
+	<select id="queryByIdWithSeckillList"  resultType="com.xxkj.bean.SuccessKilled">
+		SELECT * FROM
+		seckill.success_killed where uid=#{uid}
+	</select>
+</mapper>
