@@ -21,22 +21,30 @@
 	<!-- 1).加入对静态资源处理：js,gif,png 2).允许使用 "/" 做整体映射 -->
 	<mvc:default-servlet-handler />
 	<!--3：配置JSP 显示ViewResolver -->
-	<bean
+<!-- 	 <bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/jsp/" />
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="1"/>
-	</bean>
+	</bean>  -->
 
+<!-- 针对freemarker的视图配置 -->  
+    <bean id="viewResolver"  
+        class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">  
+        <property name="cache" value="false" />  
+        <property name="prefix" value="" />  
+        <property name="suffix" value=".jsp" />  
+         <property name="contentType" value="text/html;charset=UTF-8" />
+    <property name="exposeRequestAttributes" value="true" />
+    <property name="exposeSessionAttributes" value="true" />
+    <property name="exposeSpringMacroHelpers" value="true" />
+    <property name="requestContextAttribute" value="request" />
+    <property name="order" value="0" />
 
-
-
-
-
-
-
+        
+    </bean>
 
 
 </beans>

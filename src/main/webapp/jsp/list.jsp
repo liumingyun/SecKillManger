@@ -1,18 +1,21 @@
-<%@page contentType="text/html; charset=UTF-8" language="java"%>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link
+	href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- 可选的Bootstrap主题文件（一般不使用） -->
+<script
+	src="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap-theme.min.css"></script>
+<#assign base=request.contextPath />
 
-<%@include file="common/tag.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>秒杀商品列表</title>
-<%@include file="common/head.jsp"%>
+
 </head>
 <body>
-
-
-
-
-
 	<div class="container">
 		<div class="panel panel-default">
 			<div class="panel-heading text-center">
@@ -31,49 +34,23 @@
 						</tr>
 					</thead>
 					<tbody>
-				
-						<c:forEach items="${list}" var="sk">
-							
-								<tr>
-									<td>${sk.name}</td>
-									<td>${sk.number}</td>
-									<td><fmt:formatDate value="${sk.startTime}"
-											pattern="yyyy-MM-dd HH:mm:ss" /></td>
-									<td><fmt:formatDate value="${sk.endTime}"
-											pattern="yyyy-MM-dd HH:mm:ss" /></td>
-									<td><fmt:formatDate value="${sk.createTime}"
-											pattern="yyyy-MM-dd HH:mm:ss" /></td>
-
-								<c:choose>
-									<c:when test="${fn:length(successList) != 0}">
-										<c:forEach items="${successList}" var="sl">
-											<td>
-												<c:choose>
-												 <c:when test="${sl.seckillId==sk.seckillId}">
-												  	<a class="btn btn-warning" href="###">已购买</a>
-												  </c:when>
-												  <c:otherwise>		  	
-													
-												  	<a class="btn btn-info" href="<%=request.getContextPath()%>/seckill/${sk.seckillId}/detail" target="_blank" >未购买</a>
-												  </c:otherwise> 
-												</c:choose>
-											</td>
-										</c:forEach>
-									</c:when>
-									<c:otherwise>		  
-									 		<td>	
-											  	<a class="btn btn-info" href="<%=request.getContextPath()%>/seckill/${sk.seckillId}/detail" target="_blank" >未购买</a>
-										  	</td>
-									</c:otherwise> 
-								</c:choose>
-
-								</tr>
-							
-						</c:forEach>
-
-
-
-
+						<#list list as sk> 
+							<tr>
+							<td>${sk.name}</td>
+							<td>${sk.number}</td>
+							<td>${sk.startTime?string("yyyy-MM-dd HH:mm:ss")}</td>
+							<td>${sk.endTime?string("yyyy-MM-dd HH:mm:ss")}</td>
+							<td>${sk.createTime?string("yyyy-MM-dd HH:mm:ss")}</td>
+							<#if sk.isBuy==1>
+								<td><a class="btn btn-warning" href="###">已购买</a></td>
+							<#else>
+								<td><a class="btn btn-info"
+											href="${base}/seckill/${sk.seckillId}/detail"
+											target="_blank">未购买</a></td>
+							</#if>
+							</tr>
+						 </#list>
+						 
 					</tbody>
 				</table>
 

@@ -38,21 +38,18 @@ public class SecKillConteroller {
     
    
     @RequestMapping(value = "/{uid}/list",method = RequestMethod.GET)
-    public String list(@PathVariable("uid") int uid,Model model)
+    public String list(@PathVariable("uid") Integer uid,Model model)
     {
-        
- 
-    	
+
         //获取列表页
-        List<Seckill> list=secKillService.getSeckillList();
-        List<SuccessKilled> successList=secKillService.getSuccessKilleds(uid);
-        System.out.println("购买过数量:"+successList.size());
+        List<Seckill> list=secKillService.getSeckillList(uid);
+        
+        
         for (Seckill seckill : list) {
-			System.out.println(seckill.getName()+"\t"+seckill.getCreateTime()+"\t"+seckill.getStartTime());
+        	System.out.println(seckill.getName()+"\t"+seckill.getCreateTime()+"\t"+seckill.getStartTime()+"\t"+seckill.getIsBuy());
 		}
         model.addAttribute("uid",uid);
         model.addAttribute("list",list);
-        model.addAttribute("successList",successList);
         return "list";
         
     }

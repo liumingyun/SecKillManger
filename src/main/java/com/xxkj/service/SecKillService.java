@@ -31,9 +31,28 @@ public class SecKillService {
     public SeckilledDao seckilledDao;
     
     
-	public List<Seckill> getSeckillList() {
-        return seckillDao.queryAll(0,4);
+	public List<Seckill> getSeckillList(Integer uid) {
+		
+		List<Seckill> listSeckills=seckillDao.queryAll(0,4);
+		List<SuccessKilled> listSuccessKilled=seckilledDao.queryByIdWithSeckillList(uid);
+
+        for (Seckill seckill : listSeckills) {
+        	//System.out.println(seckill.getName()+"\t"+seckill.getCreateTime()+"\t"+seckill.getStartTime());
+        		if (listSuccessKilled.size()>0){
+					for(SuccessKilled successKilled:listSuccessKilled){
+						if (seckill.getSeckillId()==successKilled.getSeckillId()) {
+							seckill.setIsBuy(1);
+						}
+					}
+				}
+		}
+        return listSeckills;
+		
     }
+	
+	
+	
+		
 	
 	 public Seckill getById(long seckillId) {
 	        return seckillDao.querySecKillById(seckillId);

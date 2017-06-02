@@ -17,8 +17,20 @@ public class Seckill {
     private Date startTime;
     private Date endTime;
     private Date createTime;
+    
+    private int  isBuy=0;
+    
+    
+    
+    public int getIsBuy() {
+		return isBuy;
+	}
 
-    public long getSeckillId() {
+	public void setIsBuy(int isBuy) {
+		this.isBuy = isBuy;
+	}
+
+	public long getSeckillId() {
         return seckillId;
     }
 

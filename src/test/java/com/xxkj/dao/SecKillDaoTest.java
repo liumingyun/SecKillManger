@@ -37,16 +37,18 @@ public class SecKillDaoTest {
             Seckill seckill=seckillDao.querySecKillById(1001);
             System.out.println("seckill:"+seckill.getName());
         }
+        
         @Test
         public void queryAllTest(){
         	List<Seckill> listSeckill=seckillDao.queryAll(0,4);
             for (Seckill seckill:listSeckill){
             //System.out.println("listSeckill:"+seckill.getName());
-                List<SuccessKilled> listSuccessKilled=seckilledDao.queryByIdWithSeckillList(42);
+                List<SuccessKilled> listSuccessKilled=seckilledDao.queryByIdWithSeckillList(45);
                 for (SuccessKilled successKilled:listSuccessKilled) {
                 	 // System.out.println("successKilled:"+seckill.getName());
 					if (successKilled.getSeckillId()==seckill.getSeckillId()) {
 						System.out.println(seckill.getName()+"已购买");
+						
 					}else{
 						System.out.println(seckill.getName()+"没有购买");
 					}
