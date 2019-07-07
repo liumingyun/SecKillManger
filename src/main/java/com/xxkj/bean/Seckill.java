@@ -19,7 +19,9 @@ public class Seckill {
     private Date createTime;
 
 	private int aaaa;
-
+    private int bbbb;
+    private int cccc;
+    private int dddd;
     
     private int  isBuy=0;
     
