@@ -10,7 +10,7 @@ import com.xxkj.bean.*;
 
 
 public class Seckill {
-	
+
 	private long seckillId;
     private String name;
     private int number;
@@ -22,9 +22,10 @@ public class Seckill {
     private int bbbb;
     private int cccc;
     private int dddd;
-    
+
     private int  isBuy=0;
-    
+
+
     
     
     public int getIsBuy() {
